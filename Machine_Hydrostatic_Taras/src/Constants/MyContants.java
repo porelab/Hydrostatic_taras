@@ -1,0 +1,34 @@
+package Constants;
+
+public class MyContants {
+	
+	
+	public static String sampleid="MySample",lotno="MyLot";
+	public static String stepsize="1";
+	public static double maxPressure=4;
+	
+	
+	//setting parameter
+	public static double getInitialPR()
+	{
+		return 2;
+	}
+	public static double getIcrementPR()
+	{
+		return 1;
+	}
+	public static int getDpCheckPoints()
+	{
+		return 3;
+	}
+	public static double getIncrementRate()
+	{
+		return 0.015;
+	}
+	public static int getDropPercentage()
+	{
+		return 90;
+	}
+	
+	
+}
