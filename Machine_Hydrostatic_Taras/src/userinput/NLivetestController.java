@@ -541,13 +541,23 @@ public class NLivetestController implements Initializable {
 //
 // }
 
-				Mycommand.setDelay(stepsize, 0);
+				
+				
+//				Mycommand.setDelay(stepsize, 0);
+//				try {
+//
+//					Thread.sleep(minde);
+//				} catch (Exception e) {
+//
+//				}
+				Mycommand.setStability(2, 5, 0);
 				try {
 
 					Thread.sleep(minde);
 				} catch (Exception e) {
 
 				}
+				
 				Mycommand.sendAdcEnableBits("001", 0);
 				try {
 
@@ -555,6 +565,8 @@ public class NLivetestController implements Initializable {
 				} catch (Exception e) {
 
 				}
+				
+				
 				Mycommand.valveOn('1', 0);
 				try {
 
@@ -1158,14 +1170,18 @@ public class NLivetestController implements Initializable {
 			if(stadycount>=dpNpoints)
 			{
 
+				
 				stadycount=0;
+				
+				if(pr>0.3)
+				{
 				print("last PR : "+lastPrCount);
 				print("increment PR : "+incrementPrCount);
 				
 				lastPrCount=lastPrCount+incrementPrCount;
 				print("total PR : "+lastPrCount);
 				Mycommand.setDACValue('1', lastPrCount, 200);
-				
+				}
 			}
 			
 			//check drop

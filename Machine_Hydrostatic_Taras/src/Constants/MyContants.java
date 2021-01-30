@@ -11,11 +11,11 @@ public class MyContants {
 	//setting parameter
 	public static double getInitialPR()
 	{
-		return 2;
+		return 5;
 	}
 	public static double getIcrementPR()
 	{
-		return 1;
+		return 1.5;
 	}
 	public static int getDpCheckPoints()
 	{
