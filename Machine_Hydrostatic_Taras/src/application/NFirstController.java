@@ -475,7 +475,8 @@ public class NFirstController implements Initializable {
 			// mydia=new MyDialoug(Main.mainstage,
 			// "/userinput/popupresult.fxml");
 
-			mydia = new MyDialoug(Main.mainstage, "/application/popfxml.fxml");
+			//mydia = new MyDialoug(Main.mainstage, "/application/popfxml.fxml");
+			mydia = new MyDialoug(Main.mainstage, "/application/Quicktest.fxml");
 
 			mydia.showDialoug();
 

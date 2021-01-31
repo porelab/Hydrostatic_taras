@@ -7,6 +7,13 @@ public class MyContants {
 	public static String stepsize="1";
 	public static double maxPressure=4;
 	
+	public static String testmode,pressurerate,samplearea,maxpressure;
+	
+	/*test settong*/
+	
+	public static String incrate,incpr,initpr,delp;
+
+	
 	
 	//setting parameter
 	public static double getInitialPR()

@@ -68,7 +68,7 @@ public class Myapp {
 	public static SimpleBooleanProperty hb=new SimpleBooleanProperty(true);
 	public static String username,email,pass,status;
 	
-	public static String sampleid,testtrial,indtype,materialapp,fluidname,fluidvalue,classification,crossection,thresold,tfactore,splate,thikness,industryname,lotnumber,startpress;
+	public static String sampleid,testtrial,indtype,materialapp,fluidname,fluidvalue,classification,crossection,thresold,tfactore,splate,thikness,industryname,lotnumber,startpress,maxpre;
 	
 	//New ADD
 	public static String materialtype,accbpt="100",accstep="50",accstability="50",stabilitytype,endpress,testsequence,chambertype,crossovertgl;
