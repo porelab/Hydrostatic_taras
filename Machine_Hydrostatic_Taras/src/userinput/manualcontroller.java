@@ -507,7 +507,7 @@ public class manualcontroller implements Initializable {
 							.getResourceAsStream("/userinput/valve ON.png"));
 					v3.setImage(image);
 
-					imgv4.setVisible(true);
+				//	imgv4.setVisible(true);
 
 
 					Mycommand.valveOn('4', 0);
@@ -516,7 +516,7 @@ public class manualcontroller implements Initializable {
 							.getResourceAsStream("/userinput/valve OFF.png"));
 					v3.setImage(image);
 
-					imgv4.setVisible(false);
+					//imgv4.setVisible(false);
 
 
 					Mycommand.valveOff('4', 0);
@@ -533,8 +533,8 @@ public class manualcontroller implements Initializable {
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/valve ON.png"));
 					v4.setImage(image);
-					lblrealeas.setVisible(true);
-					imgv5.setVisible(true);
+				//	lblrealeas.setVisible(true);
+					//imgv5.setVisible(true);
 
 
 					Mycommand.valveOn('5', 0);
@@ -542,8 +542,8 @@ public class manualcontroller implements Initializable {
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/valve OFF.png"));
 					v4.setImage(image);
-					lblrealeas.setVisible(false);
-					imgv5.setVisible(false);
+					//lblrealeas.setVisible(false);
+					//imgv5.setVisible(false);
 
 
 					Mycommand.valveOff('5', 0);
@@ -558,7 +558,7 @@ public class manualcontroller implements Initializable {
 			public void handle(ActionEvent arg0) {
 
 				if (valve5new.isSelected()) {
-					imgv1.setVisible(true);
+					//imgv1.setVisible(true);
 
 					Mycommand.valveOn('2', 0);
 
@@ -567,7 +567,7 @@ public class manualcontroller implements Initializable {
 					v5new.setImage(image);
 
 				} else {
-					imgv1.setVisible(false);
+					//imgv1.setVisible(false);
 					imgreg2.setVisible(false);
 
 
@@ -904,7 +904,7 @@ public class manualcontroller implements Initializable {
 	void setPR(Gauge gauge1) {
 
 		try {
-			imgreg1.setVisible(true);
+			//imgreg1.setVisible(true);
 			double d1 = Double.parseDouble(pr.getText());
 			double d = (double) 65535 * d1
 					/ Integer.parseInt(DataStore.getPr());
