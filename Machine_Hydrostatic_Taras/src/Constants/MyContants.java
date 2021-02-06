@@ -1,5 +1,9 @@
 package Constants;
 
+import java.util.List;
+
+import application.Database;
+
 public class MyContants {
 	
 	
@@ -40,5 +44,42 @@ public class MyContants {
 		return 20;
 	}
 	
-	
+	public static String getincrate()
+	{
+		String incrate="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select incrate from test_setting");
+		incrate =(ll.get(0).get(0));
+
+		return incrate;
+	}
+	public static String getincpr()
+	{
+		String incpr="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select incpr from test_setting");
+		incpr =(ll.get(0).get(0));
+
+		return incpr;
+	}
+	public static String getinitpr()
+	{
+		String initpr="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select initpr from test_setting");
+		initpr =(ll.get(0).get(0));
+
+		return initpr;
+	}
+
+	public static String getdelp()
+	{
+		String delp="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select delp from test_setting");
+		delp =(ll.get(0).get(0));
+
+		return delp;
+	}
+
 }

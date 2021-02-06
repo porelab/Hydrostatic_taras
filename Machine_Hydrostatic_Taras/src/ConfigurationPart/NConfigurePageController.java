@@ -39,6 +39,8 @@ import application.Myapp;
 
 import com.jfoenix.controls.JFXToggleButton;
 
+import Constants.MyContants;
+
 public class NConfigurePageController implements Initializable {
 
 	@FXML
@@ -126,6 +128,10 @@ public class NConfigurePageController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
+		System.out.println("Incrate : "+MyContants.getincrate());
+		System.out.println("IncPR : "+MyContants.getincpr());
+		System.out.println("InitPR : "+MyContants.getinitpr());
+		System.out.println("Delp : "+MyContants.getdelp());
 		System.out.println("Ip ddress : -" +DataStore.getipaddress());
 		
 		btnsaveconnection.setOnAction(new EventHandler<ActionEvent>() {
