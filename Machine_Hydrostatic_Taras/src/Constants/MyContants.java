@@ -22,19 +22,22 @@ public class MyContants {
 	}
 	public static double getIcrementPR()
 	{
-		return 1.5;
+		//return Double.parseDouble(incpr);
+		return 1;
 	}
 	public static int getDpCheckPoints()
 	{
-		return 3;
+		//return Integer.parseInt(delp);
+		return 10;
 	}
 	public static double getIncrementRate()
 	{
-		return 0.015;
+		//return Double.parseDouble(incrate);
+		return 20;
 	}
 	public static int getDropPercentage()
 	{
-		return 90;
+		return 20;
 	}
 	
 	

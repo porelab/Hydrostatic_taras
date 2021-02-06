@@ -203,14 +203,16 @@ public class NLivetestController implements Initializable {
 	int dpNpointCount = 0;
 	int stepsize, dpNpoints, dropPer;
 	double incrementRate, initialPR, endPressure, incrementPR;
-	
-	int lastPrCount=0;
-	int incrementPrCount=0;
-	
-	int avgCount=0;
-	double pgOffset=0;
 
-	
+	int lastPrCount = 0;
+	int incrementPrCount = 0;
+
+	int avgCount = 0;
+	double pgOffset = 0;
+	boolean inilizedPressure = true;
+
+	int prCheck = 1;
+	double prx, pry, prn = 1;
 
 	void setInitialData() {
 		stepsize = Integer.parseInt(MyContants.stepsize) * 1000;
@@ -219,8 +221,14 @@ public class NLivetestController implements Initializable {
 
 		incrementRate = MyContants.getIncrementRate();
 		initialPR = MyContants.getInitialPR();
-		endPressure = MyContants.maxPressure;
+		endPressure = Double.parseDouble(MyContants.maxpressure);
 		incrementPR = MyContants.getIcrementPR();
+
+		prx = incrementPR;
+		prn = 1;
+		pry = 0.3;
+
+		inilizedPressure = true;
 
 		System.out.println("\n\n\nStep Size : " + stepsize);
 		System.out.println("dropPer : " + dropPer);
@@ -228,7 +236,90 @@ public class NLivetestController implements Initializable {
 		System.out.println("incrementRate : " + incrementRate);
 		System.out.println("initialPR : " + initialPR);
 		System.out.println("endPressure : " + endPressure);
-		System.out.println("incrementPR : " + incrementPR);
+		System.out.println("PRX : " + prx);
+		System.out.println("PRN : " + prn);
+		System.out.println("PRY : " + pry);
+
+	}
+
+	void setBubblePoints(double pr) {
+
+		if (pr > 0.1) {
+			readpre = pr;
+			readtime = getTime();
+
+			bans.add("" + pr);
+			tlist.add("" + readtime);
+
+			Platform.runLater(new Runnable() {
+
+				@Override
+				public void run() {
+
+					series2.getData().add(new XYChart.Data(readtime, pr));
+					series2.getData().add(new XYChart.Data(readtime, DataStore.ConvertPressure(pr)));
+
+				}
+			});
+
+			if (pr > 0.3 && inilizedPressure) {
+				inilizedPressure = false;
+				double per = (double) initialPR * 100 / Integer.parseInt(DataStore.getPr());
+				int max = 65535;
+				double prCount = (double) per * max / 100;
+				lastPrCount = (int) prCount;
+				print("PR Count :" + prCount + "\nPr : " + initialPR);
+				Mycommand.setDACValue('1', lastPrCount, 500);
+			}
+
+			if (pr > prCheck) {
+
+				double increment = prx + (prn * pry);
+				print("Increment \nPrx: " + prx + "pry: " + pry + " prn: " + prn + "\nAnswer : " + increment);
+				double per = (double) increment * 100 / Integer.parseInt(DataStore.getPr());
+				int max = 65535;
+				double prCount = (double) per * max / 100;
+
+				print("Increment Count :" + prCount);
+
+				lastPrCount = lastPrCount + (int) prCount;
+				print("total PR count : " + lastPrCount);
+				Mycommand.setDACValue('1', lastPrCount, 200);
+
+				prn++;
+				prCheck++;
+
+			}
+
+			if (curpress != 0) {
+				int per = dropPer;
+				double diff = (double) curpress * per / 100;
+
+				System.out.println("Last Pr : " + curpress);
+				System.out.println("Current  : " + pr);
+
+				System.out.println("Diff : " + (curpress - diff));
+				if (pr < (curpress - diff)) {
+					print("Drop fetch");
+					// isCompletetest = true;
+				}
+			}
+
+			if (pr > endPressure || isCompletetest) {
+				completeTest();
+				Platform.runLater(new Runnable() {
+
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+
+						starttest.setDisable(false);
+					}
+				});
+			}
+
+			curpress = pr;
+		}
 
 	}
 
@@ -274,8 +365,7 @@ public class NLivetestController implements Initializable {
 			recorddata.add(readpre);
 			recordtime.add(readtime);
 			generateList();
-			if(recorddata.size()>2)
-			{
+			if (recorddata.size() > 2) {
 				completeTest();
 			}
 		} else {
@@ -386,13 +476,13 @@ public class NLivetestController implements Initializable {
 
 		DataStore.getconfigdata();
 		conditionflow = (double) Double.parseDouble(DataStore.getFc());
-		conditionpressure = Double.parseDouble(Myapp.endpress);
+		// conditionpressure = Double.parseDouble(Myapp.endpress);
 
 		recorddata = new ArrayList<Double>();
 		recordtime = new ArrayList<Double>();
 		isBubbleStart = new SimpleBooleanProperty(false);
 		isDryStart = new SimpleBooleanProperty(false);
-		lblfilename.setText(Myapp.sampleid);
+		lblfilename.setText(MyContants.sampleid);
 
 		lbltesttype.setText("Hydrostatic Pressure Test");
 		lbltesttype.setText("AATCC 127");
@@ -498,12 +588,11 @@ public class NLivetestController implements Initializable {
 		flowserireswet.getData().clear();
 		pressureserireswet.getData().clear();
 
-
 		bans.clear();
 		tlist.clear();
-		
-		 avgCount=0;
-		 pgOffset=0;
+
+		avgCount = 0;
+		pgOffset = 0;
 
 		skip = 0;
 		yAxis.setLabel("Pressure (" + DataStore.getUnitepressure() + ")");
@@ -541,8 +630,6 @@ public class NLivetestController implements Initializable {
 //
 // }
 
-				
-				
 //				Mycommand.setDelay(stepsize, 0);
 //				try {
 //
@@ -557,16 +644,15 @@ public class NLivetestController implements Initializable {
 				} catch (Exception e) {
 
 				}
-				
-				Mycommand.sendAdcEnableBits("001", 0);
+
+				Mycommand.sendAdcEnableBits("101", 0);
 				try {
 
 					Thread.sleep(minde);
 				} catch (Exception e) {
 
 				}
-				
-				
+
 				Mycommand.valveOn('1', 0);
 				try {
 
@@ -574,7 +660,7 @@ public class NLivetestController implements Initializable {
 				} catch (Exception e) {
 
 				}
-				
+
 				Mycommand.valveOff('2', 0);
 				try {
 
@@ -582,9 +668,15 @@ public class NLivetestController implements Initializable {
 				} catch (Exception e) {
 
 				}
-				
-				testtype = 0;
 
+				Mycommand.valveOn('3', 0);
+				try {
+					Thread.sleep(minde);
+				} catch (Exception e) {
+
+				}
+
+				testtype = 0;
 
 				startReading();
 
@@ -592,7 +684,6 @@ public class NLivetestController implements Initializable {
 		}).start();
 
 	}
-
 
 	double getTime() {
 		double an = (double) ((System.currentTimeMillis() - tempt1) / 1000);
@@ -724,7 +815,7 @@ public class NLivetestController implements Initializable {
 // set main graphs....
 	void setGraph() {
 		root.getChildren().add(sc);
-		DataStore.pressure_max = Integer.parseInt(Myapp.endpress);
+		DataStore.pressure_max = Integer.parseInt(MyContants.maxpressure);
 		sc.setAxisSortingPolicy(SortingPolicy.Y_AXIS.NONE);
 		sc.setAxisSortingPolicy(SortingPolicy.X_AXIS.NONE);
 
@@ -1021,17 +1112,17 @@ public class NLivetestController implements Initializable {
 						// System.out.println("" + reading);
 
 						// System.out.println("Pr : " + pr);
-					
-						
+
 						if (testtype == 0) {
-							print("pr adding for avg : "+pr);
+							observeFill(reading.get(0));
+						} else if (testtype == 1) {
+							print("pr adding for avg : " + pr);
 							avgPressure(pr);
-						}
-						else if (testtype == 1) {
-							double newpr=(pr-pgOffset);
-							System.out.println("Original Pg : "+pr+"\nAfter Offset removal : ");
+						} else if (testtype == 2) {
+							double newpr = (pr - pgOffset);
+							System.out.println("Original Pg : " + pr + "\nAfter Offset removal : ");
 							DataStore.livepressure.set(newpr);
-							setBubblePoints(newpr<0?0:newpr);
+							setBubblePoints(newpr < 0 ? 0 : newpr);
 						}
 					}
 
@@ -1059,78 +1150,89 @@ public class NLivetestController implements Initializable {
 		}
 
 	}
-	
-	void startReading()
-	{
-		Mycommand.startADC(0);
-		
+
+	void observeFill(int count) {
+
+		System.out.println("Observ count : " + count);
+		if (count > 25000 && count < 60000) {
+
+			new Thread(new Runnable() {
+
+				@Override
+				public void run() {
+
+					Mycommand.valveOff('3', 0);
+					try {
+
+					} catch (Exception e) {
+
+					}
+					testtype = 1;
+				}
+			}).start();
+
+		}
+
 	}
-	
-	void stopReading()
-	{
+
+	void startReading() {
+		Mycommand.startADC(0);
+
+	}
+
+	void stopReading() {
 		Mycommand.stopADC(0);
 	}
 
 	void avgPressure(double pr) {
 
-		
-		pgOffset+=pr;
+		pgOffset += pr;
 		avgCount++;
 
-		if(avgCount>=10)
-		{
+		if (avgCount >= 5) {
 			new Thread(new Runnable() {
 				public void run() {
-					
-					pgOffset=pgOffset/avgCount;
-					System.out.println("Pg Offset  : "+pgOffset);
-					
+
+					pgOffset = pgOffset / avgCount;
+					System.out.println("Pg Offset  : " + pgOffset);
+
 					stopReading();
-					testtype=1;
-				
-					double per =(double)initialPR*100/ Integer.parseInt(DataStore.getPr());
-					int max=65535;
-					double prCount=(double)per*max/100;
-					lastPrCount=(int)prCount;
-					print("PR Count :"+prCount+"\nPr : "+initialPR);
-					
-					
-					double per1 =(double)incrementPR*100/ 130;
-					System.out.println("per1  :  "+per1);
-					int max1=65535;
-					double prCount1=(double)per1*max1/100;
-					incrementPrCount=(int)prCount1;
-					print("Increment PR Count :"+incrementPrCount+"\nIncrement Pr : "+incrementPR);
-					
-					
-					Mycommand.setDACValue('1', lastPrCount, 500);
+					testtype = 2;
+
+					double per = (double) 20 * 100 / Integer.parseInt(DataStore.getPr());
+					int max = 65535;
+					double prCount = (double) per * max / 100;
+					int prCountint = (int) prCount;
+					print("PR Count :" + prCount + "\nPr : " + prCountint);
+
+//					double per1 =(double)incrementPR*100/ 130;
+//					System.out.println("per1  :  "+per1);
+//					int max1=65535;
+//					double prCount1=(double)per1*max1/100;
+//					incrementPrCount=(int)prCount1;
+//					print("Increment PR Count :"+incrementPrCount+"\nIncrement Pr : "+incrementPR);
+//					
+
+					Mycommand.setDACValue('1', prCountint, 500);
 					setDelay(2000);
 					startReading();
-					
+
 				}
 			}).start();
-			
-			
-			
-			
+
 		}
-		
-		
+
 	}
 
-		
-		void setDelay(int delay)
-		{
-			try {
-				Thread.sleep(delay);
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
+	void setDelay(int delay) {
+		try {
+			Thread.sleep(delay);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-	void setBubblePoints(double pr) {
+	}
+
+	void setBubblePointsOld(double pr) {
 
 		readpre = pr;
 		readtime = getTime();
@@ -1144,47 +1246,39 @@ public class NLivetestController implements Initializable {
 			public void run() {
 
 				series2.getData().add(new XYChart.Data(readtime, pr));
-		     	series2.getData().add(new XYChart.Data(readtime, DataStore.ConvertPressure(pr)));
+				series2.getData().add(new XYChart.Data(readtime, DataStore.ConvertPressure(pr)));
 
 			}
 		});
 
-		
-		if(curpress>0)
-		{
-			double dp=pr-curpress;
-			print("Dp "+dp);
-			print("Increment Rate :"+incrementRate);
-			if(dp>incrementRate)
-			{
+		if (curpress > 0) {
+			double dp = pr - curpress;
+			print("Dp " + dp);
+			print("Increment Rate :" + incrementRate);
+			if (dp > incrementRate) {
 
-				stadycount=0;
-				print("trigger set to zero  : "+stadycount);
-			}
-			else
-			{
+				stadycount = 0;
+				print("trigger set to zero  : " + stadycount);
+			} else {
 				stadycount++;
-				print("increse rate down trigger  : "+stadycount);
+				print("increse rate down trigger  : " + stadycount);
 			}
-			
-			if(stadycount>=dpNpoints)
-			{
 
-				
-				stadycount=0;
-				
-				if(pr>0.3)
-				{
-				print("last PR : "+lastPrCount);
-				print("increment PR : "+incrementPrCount);
-				
-				lastPrCount=lastPrCount+incrementPrCount;
-				print("total PR : "+lastPrCount);
-				Mycommand.setDACValue('1', lastPrCount, 200);
+			if (stadycount >= dpNpoints) {
+
+				stadycount = 0;
+
+				if (pr > 0.3) {
+					print("last PR : " + lastPrCount);
+					print("increment PR : " + incrementPrCount);
+
+					lastPrCount = lastPrCount + incrementPrCount;
+					print("total PR : " + lastPrCount);
+					Mycommand.setDACValue('1', lastPrCount, 200);
 				}
 			}
-			
-			//check drop
+
+			// check drop
 			int per = dropPer;
 			double diff = (double) curpress * per / 100;
 
@@ -1194,9 +1288,9 @@ public class NLivetestController implements Initializable {
 			System.out.println("Diff : " + (curpress - diff));
 			if (pr < (curpress - diff)) {
 				print("Drop fetch");
-			//	isCompletetest = true;
+				// isCompletetest = true;
 			}
-			
+
 			if (pr > endPressure || isCompletetest) {
 				completeTest();
 				Platform.runLater(new Runnable() {
@@ -1211,15 +1305,11 @@ public class NLivetestController implements Initializable {
 			}
 		}
 
-		curpress=pr;
-		
-	
-	
+		curpress = pr;
 
 	}
-	
-	void print(String msg)
-	{
+
+	void print(String msg) {
 		System.out.println(msg);
 	}
 
@@ -1253,7 +1343,7 @@ public class NLivetestController implements Initializable {
 					fffff.mkdir();
 				}
 
-				File f = new File(fffff.getPath() + "/" + Myapp.sampleid);
+				File f = new File(fffff.getPath() + "/" + MyContants.sampleid);
 				if (!f.isDirectory()) {
 					f.mkdir();
 					System.out.println("Dir csv folder created");
@@ -1263,7 +1353,7 @@ public class NLivetestController implements Initializable {
 
 				CalculatePorometerData c = new CalculatePorometerData();
 
-				cs.wtirefile(f.getPath() + "/" + Myapp.sampleid + "_" + findInt(ff) + ".csv");
+				cs.wtirefile(f.getPath() + "/" + MyContants.sampleid + "_" + findInt(ff) + ".csv");
 
 				if (recorddata.size() == 0) {
 					if (curpress > 2) {
@@ -1293,7 +1383,7 @@ public class NLivetestController implements Initializable {
 				cs.newLine("testname", "hydrostatic");
 				cs.newLine("result", result);
 				cs.newLine("bpressure", "" + curpress);
-				cs.newLine("sample", Myapp.sampleid);
+				cs.newLine("sample", MyContants.sampleid);
 				cs.newLine("fluidname", Myapp.fluidname);
 				cs.newLine("fluidvalue", Myapp.fluidvalue);
 				cs.newLine("mode", "" + Myapp.thresold);
@@ -1386,8 +1476,8 @@ public class NLivetestController implements Initializable {
 		Mycommand.stopADC(0);
 		Mycommand.setDACValue('1', 0, 500);
 		Mycommand.valveOff('1', 950);
-		Mycommand.valveOff('2', 1500);
-
+		Mycommand.valveOn('2', 1500);
+		Mycommand.valveOff('2', 6000);
 	}
 
 }
