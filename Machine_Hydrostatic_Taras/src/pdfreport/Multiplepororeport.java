@@ -631,7 +631,9 @@ public class Multiplepororeport {
 			e1.printStackTrace();
 		}
 
-		PdfPCell d1 = new PdfPCell(new Paragraph("* * ISO : 17025 Accredited Laboratories * *", sampleinfoq));
+		PdfPCell d1 = new PdfPCell(new Paragraph("This is a computer generated report, hence does not require signature.", sampleinfoq));
+
+//		PdfPCell d1 = new PdfPCell(new Paragraph("* * ISO : 17025 Accredited Laboratories * *", sampleinfoq));
 		d1.setPaddingLeft(10);
 		d1.setPaddingTop(1);
 		d1.setBorder(1);
@@ -943,7 +945,7 @@ public class Multiplepororeport {
 			Paragraph p;
 				if(d.data.get("result").toString().equals("pass"))
 				{
-					p=new Paragraph("Pass",passfont);
+					p=new Paragraph("PASS",passfont);
 				}
 				else
 				{
@@ -1425,7 +1427,7 @@ public class Multiplepororeport {
 				headertestname.setColor(getColorOld(14));
 
 				PdfPCell cell;
-				cell = new PdfPCell(new Phrase("AATCC 127", headertestname));
+				cell = new PdfPCell(new Phrase("EN 127", headertestname));
 				cell.setBorder(1);
 				cell.setBorder(cell.BOTTOM);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);

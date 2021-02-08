@@ -699,7 +699,7 @@ public class Singlepororeport {
 		t3.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 		PdfPCell t4 = new PdfPCell(new Paragraph("" + d.data.get("duration")
-				+ " min", sampleinfoa));
+				+ " ", sampleinfoa));
 		t4.setBorder(1);
 		t4.setBorder(t4.RIGHT);
 		t4.setBorderColor(new BaseColor(130, 130, 130));
@@ -724,8 +724,7 @@ public class Singlepororeport {
 		f11.setHorizontalAlignment(Element.ALIGN_LEFT);
 		f11.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
-		PdfPCell f22 = new PdfPCell(new Paragraph("" + d.data.get("fluidname"),
-				sampleinfoa));
+		PdfPCell f22 = new PdfPCell(new Paragraph("Water",sampleinfoa));//("" + d.data.get("fluidname"),sampleinfoa));
 		f22.setBorder(1);
 		f22.setBorder(f22.RIGHT|f22.BOTTOM);
 		f22.setBorderColor(new BaseColor(130, 130, 130));
@@ -1071,8 +1070,10 @@ public class Singlepororeport {
 			e1.printStackTrace();
 		}
 
-		PdfPCell d1 = new PdfPCell(new Paragraph(
-				"* ISO : 17025 Acceredited Laboratories *", sampleinfoq));
+	//	PdfPCell d1 = new PdfPCell(new Paragraph(
+	//			"* ISO : 17025 Acceredited Laboratories *", sampleinfoq));
+		PdfPCell d1 = new PdfPCell(new Paragraph("This is a computer generated report, hence does not require signature.", sampleinfoq));
+
 		d1.setPaddingLeft(10);
 		d1.setPaddingTop(1);
 		d1.setBorder(1);
@@ -1162,7 +1163,7 @@ public class Singlepororeport {
 	/* Row Data Table Header in Title name and unite */
 	void addTableHeader(PdfPTable tablem) {
 		backcellcoltable=new BaseColor(62, 64, 149);
-		PdfPCell cell1 = new PdfPCell(new Paragraph("No.", rowhed));
+		PdfPCell cell1 = new PdfPCell(new Paragraph("Sr.No", rowhed));
 		cell1.setBackgroundColor(backcellcoltable);
 		cell1.setBorder(1);
 		cell1.setBorder(cell1.LEFT);
@@ -1185,7 +1186,7 @@ public class Singlepororeport {
 		cell2.setVerticalAlignment(Element.ALIGN_MIDDLE);
 
 	
-		PdfPCell cell6 = new PdfPCell(new Paragraph("Pressure ("+DataStore.getUnitepressure()+")", rowhed));
+		PdfPCell cell6 = new PdfPCell(new Paragraph("Pressure", rowhed));
 		cell6.setBackgroundColor(backcellcoltable);
 		cell6.setBorder(1);
 		 cell6.setBorder(cell6.RIGHT);
@@ -1210,7 +1211,7 @@ public class Singlepororeport {
 		ucell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		ucell1.setVerticalAlignment(Element.ALIGN_TOP);
 
-		PdfPCell ucell2 = new PdfPCell(new Paragraph("( Seconds )", unitlabrow));
+		PdfPCell ucell2 = new PdfPCell(new Paragraph("( s )", unitlabrow));
 		ucell2.setBackgroundColor(backcellcoltable);
 		ucell2.setBorder(0);
 		// ucell2.setBorder(ucell2.TOP | ucell2.BOTTOM | ucell2.LEFT);

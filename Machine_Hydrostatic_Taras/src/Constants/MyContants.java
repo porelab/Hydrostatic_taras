@@ -11,11 +11,11 @@ public class MyContants {
 	public static String stepsize="1";
 	public static double maxPressure=4;
 	
-	public static String testmode,pressurerate,samplearea,maxpressure;
+	public static String testmode,pressurerate,samplearea,maxpressure,smode;
 	
 	/*test settong*/
 	
-	public static String incrate,incpr,initpr,delp;
+	public static String incrate,incpr,initpr,delp,fdrop;
 
 	
 	
@@ -81,6 +81,16 @@ public class MyContants {
 		delp =(ll.get(0).get(0));
 
 		return delp;
+	}
+	
+	public static String getfaildrop()
+	{
+		String fdrop="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select fdrop from test_setting");
+		fdrop =(ll.get(0).get(0));
+
+		return fdrop;
 	}
 
 }

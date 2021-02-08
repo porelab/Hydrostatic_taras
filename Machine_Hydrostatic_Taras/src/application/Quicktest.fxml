@@ -35,19 +35,19 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="starttest" layoutX="206.0" layoutY="490.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="150.0" style="-fx-background-radius: 50;" styleClass="linear-grad-to-bottom-right" text="Next" textFill="WHITE">
+      <Button fx:id="starttest" layoutX="206.0" layoutY="491.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="150.0" style="-fx-background-radius: 50;" styleClass="linear-grad-to-bottom-right" text="Next" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Rectangle arcHeight="500.0" arcWidth="55.0" fill="#bfb9b900" height="57.0" layoutX="214.0" layoutY="102.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="280.0" />
-      <ImageView fx:id="imgdownarrow111" fitHeight="18.0" fitWidth="18.0" layoutX="449.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle arcHeight="500.0" arcWidth="55.0" fill="#bfb9b900" height="57.0" layoutX="214.0" layoutY="80.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="280.0" />
+      <ImageView fx:id="imgdownarrow111" fitHeight="18.0" fitWidth="18.0" layoutX="449.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@downarrow.png" />
          </image>
       </ImageView>
-      <ComboBox fx:id="cmbsampleid" editable="true" layoutX="235.0" layoutY="107.0" minHeight="35.0" prefHeight="45.0" prefWidth="223.0" promptText="Sample ID" styleClass="cmbtrasperant" />
-      <Label layoutX="10.0" layoutY="116.0" prefHeight="30.0" prefWidth="209.0" text="Please select sample ID" textFill="#727272c4">
+      <ComboBox fx:id="cmbsampleid" editable="true" layoutX="235.0" layoutY="85.0" minHeight="35.0" prefHeight="45.0" prefWidth="223.0" promptText="Sample ID" styleClass="cmbtrasperant" />
+      <Label layoutX="36.0" layoutY="92.0" prefHeight="30.0" prefWidth="150.0" text="Sample ID" textFill="#727272c4">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -94,7 +94,7 @@
             <String fx:value="font-montserrat-semiBold" />
          </styleClass>
       </Label>
-      <Label layoutX="229.0" layoutY="334.0" prefHeight="23.0" prefWidth="110.0" text="Step-Size" textFill="#707070bf">
+      <Label layoutX="229.0" layoutY="368.0" prefHeight="23.0" prefWidth="110.0" text="Step-Size" textFill="#707070bf">
          <font>
             <Font size="16.0" />
          </font>
@@ -103,7 +103,7 @@
             <String fx:value="font-montserrat-semiBold" />
          </styleClass>
       </Label>
-      <Label fx:id="lblnote" layoutX="96.0" layoutY="442.0" prefHeight="25.0" prefWidth="378.0" text="Note : This will plot 1 Readings in 1 Minutes" textFill="#707070bf">
+      <Label fx:id="lblnote" layoutX="96.0" layoutY="469.0" prefHeight="25.0" prefWidth="378.0" text="Note : This will plot 1 Readings in 1 Minutes" textFill="#707070bf">
          <styleClass>
             <String fx:value="col-gray70" />
             <String fx:value="font-montserrat-semiBold" />
@@ -112,14 +112,14 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Rectangle arcHeight="400.0" arcWidth="50.0" fill="#bfb9b900" height="55.0" layoutX="57.0" layoutY="375.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="446.0" />
-      <JFXSlider fx:id="stepsizeslider" blockIncrement="1.0" cache="true" layoutX="61.0" layoutY="389.0" majorTickUnit="1.0" max="15.0" maxHeight="40.0" min="0.0" minHeight="40.0" minorTickCount="0" prefHeight="40.0" prefWidth="397.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
+      <Rectangle arcHeight="400.0" arcWidth="50.0" fill="#bfb9b900" height="55.0" layoutX="57.0" layoutY="402.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="446.0" />
+      <JFXSlider fx:id="stepsizeslider" blockIncrement="1.0" cache="true" layoutX="61.0" layoutY="416.0" majorTickUnit="1.0" max="15.0" maxHeight="40.0" min="0.0" minHeight="40.0" minorTickCount="0" prefHeight="40.0" prefWidth="397.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="1.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXSlider>
-      <Rectangle arcHeight="500.0" arcWidth="55.0" fill="#2197ff00" height="60.0" layoutX="211.0" layoutY="170.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="285.0" />
-      <TextField fx:id="txtlotno" layoutX="214.0" layoutY="173.0" prefHeight="57.0" prefWidth="280.0" promptText="Enter Lot Number">
+      <Rectangle arcHeight="500.0" arcWidth="55.0" fill="#2197ff00" height="60.0" layoutX="211.0" layoutY="148.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="285.0" />
+      <TextField fx:id="txtlotno" layoutX="214.0" layoutY="151.0" prefHeight="57.0" prefWidth="280.0" promptText="Enter Lot Number">
          <font>
             <Font size="23.0" />
          </font>
@@ -131,7 +131,7 @@
             <String fx:value="col-gray70" />
          </styleClass>
       </TextField>
-      <Label layoutX="18.0" layoutY="193.0" prefHeight="25.0" prefWidth="130.0" text="Lot Number" textFill="#707070bf">
+      <Label layoutX="34.0" layoutY="171.0" prefHeight="25.0" prefWidth="130.0" text="Lot Number" textFill="#707070bf">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -181,8 +181,8 @@
             </ImageView>
          </graphic>
       </Button>
-      <Rectangle arcHeight="500.0" arcWidth="55.0" fill="#2197ff00" height="60.0" layoutX="211.0" layoutY="241.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="285.0" />
-      <TextField fx:id="txtmaxpres" layoutX="214.0" layoutY="244.0" prefHeight="57.0" prefWidth="280.0" promptText="Enter Max Pressure">
+      <Rectangle arcHeight="500.0" arcWidth="55.0" fill="#2197ff00" height="60.0" layoutX="211.0" layoutY="219.0" stroke="#bfb9b9" strokeType="INSIDE" strokeWidth="2.0" width="285.0" />
+      <TextField fx:id="txtmaxpres" layoutX="214.0" layoutY="222.0" prefHeight="57.0" prefWidth="280.0" promptText="Enter Max Pressure">
          <font>
             <Font size="23.0" />
          </font>
@@ -194,7 +194,7 @@
             <String fx:value="col-gray70" />
          </styleClass>
       </TextField>
-      <Label layoutX="18.0" layoutY="264.0" prefHeight="25.0" prefWidth="130.0" text="Max Pressure" textFill="#707070bf">
+      <Label layoutX="34.0" layoutY="242.0" prefHeight="25.0" prefWidth="130.0" text="Max Pressure" textFill="#707070bf">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -203,5 +203,24 @@
             <String fx:value="font-montserrat-semiBold" />
          </styleClass>
       </Label>
+      <Label layoutX="35.0" layoutY="316.0" prefHeight="25.0" prefWidth="130.0" text="Test Mode" textFill="#707070bf">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <styleClass>
+            <String fx:value="col-gray70" />
+            <String fx:value="font-montserrat-semiBold" />
+         </styleClass>
+      </Label>
+      <RadioButton fx:id="rdmode1" layoutX="209.0" layoutY="316.0" mnemonicParsing="false" selected="true" styleClass="col-gray70" text="Mode - 1" textFill="#797878e0">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="rdmode2" layoutX="338.0" layoutY="317.0" mnemonicParsing="false" styleClass="col-gray70" text="Mode - 2" textFill="#797878e0">
+         <font>
+            <Font name="Calibri" size="20.0" />
+         </font>
+      </RadioButton>
    </children>
 </AnchorPane>
