@@ -381,10 +381,12 @@ public class DataStore
 					}
 					
 					
-					Mycommand.setLacthing(temp, 500);
+
 					
-					Mycommand.valveOn('3', 900);
-					Mycommand.valveOff('3', 2000);
+					Mycommand.valveOff('3', 500);
+					Mycommand.setLacthing(temp, 1000);
+					
+					//Mycommand.valveOn('3', 900);
 					
 					
 				

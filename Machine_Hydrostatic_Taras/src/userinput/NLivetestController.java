@@ -213,6 +213,8 @@ public class NLivetestController implements Initializable {
 
 	int prCheck = 1;
 	double prx, pry, prn = 1;
+	
+	boolean firstObserv=false;
 
 	void setInitialData() {
 		stepsize = Integer.parseInt(MyContants.stepsize) * 1000;
@@ -245,6 +247,12 @@ public class NLivetestController implements Initializable {
 	void setBubblePoints(double pr) {
 
 		if (pr > 0.1) {
+			
+			if(tlist.size()==0)
+			{
+				tempt1 = System.currentTimeMillis();
+			}
+			
 			readpre = pr;
 			readtime = getTime();
 
@@ -598,7 +606,7 @@ public class NLivetestController implements Initializable {
 		yAxis.setLabel("Pressure (" + DataStore.getUnitepressure() + ")");
 		xAxis.setLabel("Time (Seconds)");
 
-		tempt1 = System.currentTimeMillis();
+		
 
 		starttest.setDisable(true);
 
@@ -614,6 +622,7 @@ public class NLivetestController implements Initializable {
 		// conditionpressure));
 		changetime = System.currentTimeMillis();
 
+		firstObserv=true;
 		Toast.makeText(Main.mainstage, "Test is being started!", 2400, 200, 200);
 		new Thread(new Runnable() {
 
@@ -669,7 +678,7 @@ public class NLivetestController implements Initializable {
 
 				}
 
-				Mycommand.valveOn('3', 0);
+				Mycommand.valveOff('3', 0);
 				try {
 					Thread.sleep(minde);
 				} catch (Exception e) {
@@ -1154,6 +1163,14 @@ public class NLivetestController implements Initializable {
 	void observeFill(int count) {
 
 		System.out.println("Observ count : " + count);
+		
+		if(firstObserv && count< 25000)
+		{
+			firstObserv=false;
+			Mycommand.valveOn('3', 300);
+		}
+		
+		
 		if (count > 25000 && count < 60000) {
 
 			new Thread(new Runnable() {
