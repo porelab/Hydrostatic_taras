@@ -227,7 +227,7 @@ public class NLivetestController implements Initializable {
 		prx = incrementPR;
 		prn = 1;
 		pry = 0.3;
-
+                            
 		inilizedPressure = true;
 
 		System.out.println("\n\n\nStep Size : " + stepsize);
@@ -653,7 +653,7 @@ public class NLivetestController implements Initializable {
 
 				}
 
-				Mycommand.valveOn('1', 0);
+				Mycommand.valveOff('1', 0);
 				try {
 
 					Thread.sleep(minde);
@@ -1167,6 +1167,7 @@ public class NLivetestController implements Initializable {
 					} catch (Exception e) {
 
 					}
+					Mycommand.valveOn('1', 600);
 					testtype = 1;
 				}
 			}).start();

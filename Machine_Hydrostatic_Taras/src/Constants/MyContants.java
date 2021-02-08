@@ -38,7 +38,7 @@ public class MyContants {
 	public static double getIncrementRate()
 	{
 		//return Double.parseDouble(incrate);
-		return 20;
+		return 15;
 	}
 	public static int getDropPercentage()
 	{
