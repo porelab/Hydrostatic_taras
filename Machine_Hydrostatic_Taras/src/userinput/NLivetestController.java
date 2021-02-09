@@ -228,7 +228,7 @@ public class NLivetestController implements Initializable {
 
 		prx = incrementPR;
 		prn = 1;
-		pry = 0.3;
+		pry = 0.1;
                             
 		inilizedPressure = true;
 
@@ -1179,12 +1179,13 @@ public class NLivetestController implements Initializable {
 				public void run() {
 
 					Mycommand.valveOff('3', 0);
-					try {
-
-					} catch (Exception e) {
-
-					}
 					Mycommand.valveOn('1', 600);
+					
+					Mycommand.valveOn('2', 1200);
+					
+					Mycommand.valveOff('2', 2500);
+					
+
 					testtype = 1;
 				}
 			}).start();
@@ -1375,7 +1376,7 @@ public class NLivetestController implements Initializable {
 
 				if (recorddata.size() == 0) {
 					if (curpress > 2) {
-						result = "PASS";
+						result = "pass";
 					} else {
 						result = "fail";
 					}
@@ -1383,13 +1384,13 @@ public class NLivetestController implements Initializable {
 
 					if (recorddata.size() > 2) {
 						if (recorddata.get(2) >= 2) {
-							result = "PASS";
+							result = "pass";
 						} else {
 							result = "fail";
 						}
 					} else {
 						if (curpress > 2) {
-							result = "PASS";
+							result = "pass";
 						} else {
 							result = "fail";
 						}
@@ -1493,9 +1494,10 @@ public class NLivetestController implements Initializable {
 
 		Mycommand.stopADC(0);
 		Mycommand.setDACValue('1', 0, 500);
-		Mycommand.valveOff('1', 950);
+		Mycommand.valveOn('1', 950);
 		Mycommand.valveOn('2', 1500);
-		Mycommand.valveOff('2', 6000);
+		Mycommand.valveOff('2', 4500);
+		Mycommand.valveOff('1', 5000);
 	}
 
 }
