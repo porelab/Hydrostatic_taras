@@ -22,7 +22,7 @@ public class MyContants {
 	//setting parameter
 	public static double getInitialPR()
 	{
-		return 5;
+		return 11;
 		
 	}
 	public static double getIcrementPR()
