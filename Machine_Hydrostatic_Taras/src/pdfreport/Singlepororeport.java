@@ -814,7 +814,7 @@ public class Singlepororeport {
 		try {
 
 			List<String> ys=d.getValuesOf(d.data.get("recordy").toString());
-			data=""+DataStore.ConvertPressure(ys.get(2));
+			data=""+DataStore.ConvertPressure(d.data.get("bpressure").toString());
 			
 		}
 		catch(Exception e)
