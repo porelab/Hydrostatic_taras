@@ -1527,7 +1527,7 @@ public class Singlepororeport {
 				headertestname.setColor(getColor(14));
 
 				PdfPCell cell;
-				cell = new PdfPCell(new Phrase("AATCC 127", headertestname));
+				cell = new PdfPCell(new Phrase("EN 20811", headertestname));
 				cell.setBorder(1);
 				cell.setBorder(cell.BOTTOM);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);

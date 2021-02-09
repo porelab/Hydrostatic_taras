@@ -1375,7 +1375,7 @@ public class NLivetestController implements Initializable {
 
 				if (recorddata.size() == 0) {
 					if (curpress > 2) {
-						result = "pass";
+						result = "PASS";
 					} else {
 						result = "fail";
 					}
@@ -1383,13 +1383,13 @@ public class NLivetestController implements Initializable {
 
 					if (recorddata.size() > 2) {
 						if (recorddata.get(2) >= 2) {
-							result = "pass";
+							result = "PASS";
 						} else {
 							result = "fail";
 						}
 					} else {
 						if (curpress > 2) {
-							result = "pass";
+							result = "PASS";
 						} else {
 							result = "fail";
 						}

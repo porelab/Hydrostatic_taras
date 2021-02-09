@@ -124,7 +124,7 @@ public class PdfselectionController implements Initializable {
 			showBrowsebtn();
 		}
 
-		txtnotes.setText("The following test Procedure is based on AATCC 127 Hydrostatic Pressure Level 3.");
+		txtnotes.setText("The following test Procedure is based on EN 20811 Hydrostatic Pressure Level 3.");
 
 		/*Close Popup*/
 		btncancel.setOnAction(new EventHandler<ActionEvent>() {
