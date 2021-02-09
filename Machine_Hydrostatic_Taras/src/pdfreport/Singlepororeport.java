@@ -1289,12 +1289,17 @@ public class Singlepororeport {
 		for (int k = 0; k < x.size(); k++) {
 			List<String> temp = new ArrayList<String>();
 
-			
+			try
+			{
 
 			temp.add((k+1)+suffixes[k+1]+ " Bubble");
 			temp.add(""+Myapp.getRound(x.get(k), DataStore.getRoundOff()));
 			temp.add(""+Myapp.getRound(y.get(k), DataStore.getRoundOff()));
 			data.add(temp);
+			}
+			catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 		
 		BaseColor bordercolor = new BaseColor(130, 130, 130);
@@ -1306,9 +1311,13 @@ public class Singlepororeport {
 			
 
 			if (j % 2 == 0) {
-
+try {
 				addRowsToTable(tablem, data.get(j), 1, false, false, bordercolor, null, 25f, tabledata);
 
+}
+catch (Exception e) {
+	// TODO: handle exception
+}
 				// withoutbackcolor
 			}
 
@@ -1324,10 +1333,15 @@ public class Singlepororeport {
 
 				tablem.getRows().remove(tablem.getRows().size() - 1);
 
+				try {
 				if (j % 2 == 0) {
 					addRowsToTable(tablem, data.get(j), 1, false, true, bordercolor, null, 25f, tabledata);
 				} else {
 					addRowsToTable(tablem, data.get(j), 1, false, true, bordercolor, backgroundcolor, 25f, tabledata);
+				}
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 			}	
