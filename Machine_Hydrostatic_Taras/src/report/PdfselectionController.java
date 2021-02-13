@@ -120,7 +120,7 @@ public class PdfselectionController implements Initializable {
 			lblbrowse.setVisible(false);
 			btnbrows.setVisible(false);
 			excelsave.setVisible(false);
-			chsampleinfo.setVisible(true);
+			//chsampleinfo.setVisible(true);
 			showBrowsebtn();
 		}
 

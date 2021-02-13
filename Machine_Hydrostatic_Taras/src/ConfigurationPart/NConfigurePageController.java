@@ -81,7 +81,7 @@ public class NConfigurePageController implements Initializable {
 
 	static String selectedrad="",Por;
 	
-	public static boolean bolkey = false;
+	public static boolean bolkey = false,bolkeylet = false;
 	
 	Database db=new Database();
 	
@@ -199,7 +199,7 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 			
 			}
 		});
-		
+selectelowhigh();
 	setlastconnectiondata();
 
 			addShortCut();
@@ -388,19 +388,29 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 						
 
 								//Pro in absolute and relative in pg1
-								
+						if (tgbkeyboard.isSelected()) {
+							bolkey=true;
+							Myapp.tabletmode="true";
+							
+				        } else {
+				        	bolkey=false;
+				        	Myapp.tabletmode="false";
+						
+				        }
 										
 											if(ab1.isSelected())
 											{
-												
-												pp1scaletype="relative";
+												bolkeylet=true;
+												Myapp.ab1scale="relative";
 											}
 											
 											else 
 											{
-												pp1scaletype="absolute";
+												bolkeylet=true;
+												Myapp.ab1scale="absolute";
+
 											}
-									
+								
 
 								
 									//pro in absolute and relative in pg2
@@ -621,7 +631,7 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 		
 		void apllaypro()
 		{
-			selectelowhigh();
+			
 			applypro.setOnAction(new EventHandler<ActionEvent>() {
 				
 				@Override
@@ -640,8 +650,9 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 					{
 					
 					}*/
-					String sql = "update configdata set pg1='"+ppg1.getText()+"', pg2='"+ppg2.getText()+"',fm1='"+pfm1.getText()+"',fm2='"+pfm2.getText()+"',pr='"+ppr.getText()+"',fc='"+pfc.getText()+"',pg1type='"+propg1+"',pg2type='"+propg2+"',fc1type='"+profm1+"',fc2type='"+profm2+"',ch='"+""+"',p1scaletype='"+pp1scaletype+"',p2scaletype='"+pp2scaletype+"'where type='"+"pro"+"'"; 
+					String sql = "update configdata set pg1='"+ppg1.getText()+"', pg2='"+ppg2.getText()+"',fm1='"+pfm1.getText()+"',fm2='"+pfm2.getText()+"',pr='"+ppr.getText()+"',fc='"+pfc.getText()+"',pg1type='"+propg1+"',pg2type='"+propg2+"',fc1type='"+profm1+"',fc2type='"+profm2+"',ch='"+""+"',p1scaletype='"+Myapp.ab1scale+"',p2scaletype='"+pp2scaletype+"'where type='"+"pro"+"'"; 
 
+					System.out.println("SQL:_"+sql);
 					
 					if(db.Insert(sql))
 					{
@@ -800,7 +811,7 @@ btndefaultsetting.setOnAction(new EventHandler<ActionEvent>() {
 					}
 				
 						//absolute and relative pscaletype
-					
+					System.out.println("SOSOSOSOS:-"+pscaletype4p);
 					if (pscaletype4p.equals("relative")) {
 						pp1scaletype = "relative";
 						ab1.setSelected(true);

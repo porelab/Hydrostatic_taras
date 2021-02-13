@@ -82,7 +82,7 @@ public class Myapp {
 	public static double maxpressure,maxflow;
 	
 	//Keyboard
-	public static String tabletmode;
+	public static String tabletmode,ab1scale;
 	
 	public static void cleardata()
 	{
