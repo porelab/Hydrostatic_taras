@@ -510,7 +510,7 @@ public class manualcontroller implements Initializable {
 				//	imgv4.setVisible(true);
 
 
-					Mycommand.valveOn('4', 0);
+					Mycommand.valveOn('1', 0);
 				} else {
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/valve OFF.png"));
@@ -519,7 +519,7 @@ public class manualcontroller implements Initializable {
 					//imgv4.setVisible(false);
 
 
-					Mycommand.valveOff('4', 0);
+					Mycommand.valveOff('1', 0);
 				}
 
 			}
@@ -537,7 +537,7 @@ public class manualcontroller implements Initializable {
 					//imgv5.setVisible(true);
 
 
-					Mycommand.valveOn('5', 0);
+					Mycommand.valveOn('2', 0);
 				} else {
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/valve OFF.png"));
@@ -546,7 +546,7 @@ public class manualcontroller implements Initializable {
 					//imgv5.setVisible(false);
 
 
-					Mycommand.valveOff('5', 0);
+					Mycommand.valveOff('2', 0);
 				}
 
 			}
@@ -560,7 +560,7 @@ public class manualcontroller implements Initializable {
 				if (valve5new.isSelected()) {
 					//imgv1.setVisible(true);
 
-					Mycommand.valveOn('2', 0);
+					Mycommand.valveOn('3', 0);
 
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/valve ON.png"));
@@ -571,7 +571,7 @@ public class manualcontroller implements Initializable {
 					imgreg2.setVisible(false);
 
 
-					Mycommand.valveOff('2', 0);
+					Mycommand.valveOff('3', 0);
 					Image image = new Image(this.getClass()
 							.getResourceAsStream("/userinput/valve OFF.png"));
 					v5new.setImage(image);
@@ -808,7 +808,7 @@ public class manualcontroller implements Initializable {
 				.maxValue(Integer.parseInt(DataStore.getPg1())).build();
 
 		gauge6.setMaxValue(Integer.parseInt(DataStore.getPg1()));
-		lblpg1max.setText("PG1" + "\n" + Integer.parseInt(DataStore.getPg1())
+		lblpg1max.setText("PG" + "\n" + Integer.parseInt(DataStore.getPg1())
 				+ " ("+DataStore.getUnitepg1()+")");
 		gauge6.setPrefSize(ap5.getPrefWidth(), ap5.getPrefHeight());
 		gauge6.valueProperty().bind(DataStore.spg1);
@@ -909,13 +909,16 @@ public class manualcontroller implements Initializable {
 			double d = (double) 65535 * d1
 					/ Integer.parseInt(DataStore.getPr());
 			System.out.println("Sending  : " + (int) d);
-			List<Integer> ss = getValueList((int) d);
-			wrD = new writeFormat();
-			wrD.addChar('P');
-			wrD.addChar('R');
-			wrD.addData1(ss);
-			wrD.addLast();
-			sendData(wrD);
+			
+			Mycommand.setDACValue('1', (int)d, 100);
+//			
+//			List<Integer> ss = getValueList((int) d);
+//			wrD = new writeFormat();
+//			wrD.addChar('P');
+//			wrD.addChar('R');
+//			wrD.addData1(ss);
+//			wrD.addLast();
+//			sendData(wrD);
 
 			lblanc.setText("" + d1);
 			gauge1.setValue(d1);
@@ -1172,10 +1175,11 @@ public class manualcontroller implements Initializable {
 						a2 = a2 << 8;
 						a = a | a2;
 						a = a | a3;
-						b = (double) a * Integer.parseInt(DataStore.getPg2())
+						b = (double) a * Integer.parseInt(DataStore.getPg1())
 								/ 65535;
 						
-						if(DataStore.isabsolutepg2())
+
+						if(DataStore.isabsolutepg1())
 						{
 							b=b-14.6;
 							if(b<0)
@@ -1184,13 +1188,9 @@ public class manualcontroller implements Initializable {
 							}
 						}
 						
-						
-						System.out
-								.println("Pressure Gauge 2 :  original   reading  : "
-										+ a + "... :" + b);
-						DataStore.spg2.set(b);
-
-						pg2count.set("" + a);
+						System.out.println("Pressure Gauge 1 :  ... :" + b);
+						DataStore.spg1.set(b);
+					    pg1count.set("" + a);
 
 							
 						i = i + 16;

@@ -19,32 +19,7 @@ public class MyContants {
 
 	
 	
-	//setting parameter
-	public static double getInitialPR()
-	{
-		return 11;
-		
-	}
-	public static double getIcrementPR()
-	{
-		//return Double.parseDouble(incpr);
-		return 1;
-	}
-	public static int getDpCheckPoints()
-	{
-		//return Integer.parseInt(delp);
-		return 10;
-	}
-	public static double getIncrementRate()
-	{
-		//return Double.parseDouble(incrate);
-		return 15;
-	}
-	public static int getDropPercentage()
-	{
-		return 20;
-	}
-	
+
 	public static String getincrate()
 	{
 		String incrate="";
@@ -93,4 +68,50 @@ public class MyContants {
 		return fdrop;
 	}
 
+	
+	public static String getFillingPressureN()
+	{
+		String incrate="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select incrate from test_setting");
+		incrate =(ll.get(0).get(0));
+
+		return incrate;
+	}
+	public static String getInitprN()
+	{
+		String initpr="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select initpr from test_setting");
+		initpr =(ll.get(0).get(0));
+
+		return initpr;
+	}
+	public static String getX()
+	{
+		String incpr="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select incpr from test_setting");
+		incpr =(ll.get(0).get(0));
+
+		return incpr;
+	}
+	public static String getY()
+	{
+		String delp="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select delp from test_setting");
+		delp =(ll.get(0).get(0));
+
+		return delp;
+	}
+	public static String getDropN()
+	{
+		String fdrop="";
+		Database db=new Database();		
+		List<List<String>> ll=db.getData("select fdrop from test_setting");
+		fdrop =(ll.get(0).get(0));
+
+		return fdrop;
+	}
 }

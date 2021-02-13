@@ -34,6 +34,7 @@ public class PopupresultController implements Initializable {
     
     ChartPlot c;
 	
+    boolean isButtonActive=false;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -53,11 +54,13 @@ public class PopupresultController implements Initializable {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
+		
+				if(isButtonActive)
+				{
 				MyDialoug.closeDialoug();
-				
+			
 				Openscreen.open("/application/first.fxml");
-				
+				}
 			}
 		});
 		
@@ -66,12 +69,32 @@ public class PopupresultController implements Initializable {
 			@Override
 			public void handle(ActionEvent arg0) {
 			
+				if(isButtonActive)
+				{
 				MyDialoug.closeDialoug();
 				Openscreen.open("/userinput/Nlivetest.fxml");
-				
+				}
 				
 			}
 		});
+		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+			
+				try {
+					Thread.sleep(3000);
+					isButtonActive=true;
+				}
+				catch(Exception e)
+				{
+					
+				}
+				
+			}
+		}).start();
+		
 	}
 	
 	void setData(DatareadN dr)
