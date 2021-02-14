@@ -77,7 +77,7 @@ public class NConfigurePageController implements Initializable {
 
 	String propg1="low",profm1="low",propg2="low",profm2="low";
 	
-	String pp1scaletype="absolute",pp2scaletype="absolute",curvefit="off",crospres="0",crosflov="0";
+	String pp1scaletype="false",pp2scaletype="absolute",curvefit="off",crospres="0",crosflov="0";
 
 	static String selectedrad="",Por;
 	
@@ -145,6 +145,7 @@ public class NConfigurePageController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		
 		
 		settest_setting();
 		System.out.println("Incrate : "+MyContants.getincrate());
@@ -388,28 +389,9 @@ selectelowhigh();
 						
 
 								//Pro in absolute and relative in pg1
-						if (tgbkeyboard.isSelected()) {
-							bolkey=true;
-							Myapp.tabletmode="true";
-							
-				        } else {
-				        	bolkey=false;
-				        	Myapp.tabletmode="false";
-						
-				        }
+					
 										
-											if(ab1.isSelected())
-											{
-												bolkeylet=true;
-												Myapp.ab1scale="relative";
-											}
-											
-											else 
-											{
-												bolkeylet=true;
-												Myapp.ab1scale="absolute";
-
-											}
+										
 								
 
 								
@@ -637,8 +619,21 @@ selectelowhigh();
 				@Override
 				public void handle(ActionEvent event) {
 					
+					if(ab1.isSelected())
+					{
+						bolkeylet=true;
+						Myapp.ab1scale="true";
+					}
 					
-					System.out.println("applypro");
+					else 
+					{
+						bolkeylet=false;
+						Myapp.ab1scale="false";
+
+					}
+					
+					
+					System.out.println("applypro"+Myapp.ab1scale);
 		/*			
 					String type="Pro";
 				
@@ -810,12 +805,16 @@ selectelowhigh();
 					}
 				
 						//absolute and relative pscaletype
-					System.out.println("SOSOSOSOS:-"+pscaletype4p);
-					if (pscaletype4p.equals("relative")) {
-						pp1scaletype = "relative";
+
+					
+					
+					
+					if (pscaletype4p.equals("true")) {
+						bolkeylet=true;
 						ab1.setSelected(true);
 					} else {
-						pp1scaletype = "absolute";
+						bolkeylet=false;
+						Myapp.ab1scale="false";
 					}
 
 					if (pscaletype5p.equals("relative")) {
