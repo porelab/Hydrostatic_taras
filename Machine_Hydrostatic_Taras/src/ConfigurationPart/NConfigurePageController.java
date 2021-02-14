@@ -652,7 +652,6 @@ selectelowhigh();
 					}*/
 					String sql = "update configdata set pg1='"+ppg1.getText()+"', pg2='"+ppg2.getText()+"',fm1='"+pfm1.getText()+"',fm2='"+pfm2.getText()+"',pr='"+ppr.getText()+"',fc='"+pfc.getText()+"',pg1type='"+propg1+"',pg2type='"+propg2+"',fc1type='"+profm1+"',fc2type='"+profm2+"',ch='"+""+"',p1scaletype='"+Myapp.ab1scale+"',p2scaletype='"+pp2scaletype+"'where type='"+"pro"+"'"; 
 
-					System.out.println("SQL:_"+sql);
 					
 					if(db.Insert(sql))
 					{

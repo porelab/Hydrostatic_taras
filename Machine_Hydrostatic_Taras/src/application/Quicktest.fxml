@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minWidth="543.0" prefHeight="550.0" prefWidth="543.0" styleClass="bgwhite" stylesheets="@new_application.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.QuicktestController">
+<AnchorPane minWidth="543.0" prefHeight="564.0" prefWidth="581.0" styleClass="bgwhite" stylesheets="@new_application.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.QuicktestController">
    <children>
       <ImageView fitHeight="57.0" fitWidth="972.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -23,7 +23,7 @@
             <Font name="System Bold" size="21.0" />
          </font>
       </Label>
-      <Button fx:id="btncancel" layoutX="496.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" styleClass="cmbtrasperant" AnchorPane.leftAnchor="496.0">
+      <Button fx:id="btncancel" layoutX="496.0" layoutY="15.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="30.0" styleClass="cmbtrasperant" AnchorPane.leftAnchor="536.0">
          <graphic>
             <ImageView fitHeight="21.0" fitWidth="19.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -35,7 +35,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="starttest" layoutX="206.0" layoutY="491.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="150.0" style="-fx-background-radius: 50;" styleClass="linear-grad-to-bottom-right" text="Next" textFill="WHITE">
+      <Button fx:id="starttest" layoutX="206.0" layoutY="504.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="150.0" style="-fx-background-radius: 50;" styleClass="linear-grad-to-bottom-right" text="Next" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -222,5 +222,14 @@
             <Font name="Calibri" size="20.0" />
          </font>
       </RadioButton>
+      <Button fx:id="btndelete1" layoutX="888.0" layoutY="200.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="43.0" styleClass="btnCss" AnchorPane.leftAnchor="500.0" AnchorPane.topAnchor="85.0">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../porometer4.3/Machine_Porometer_4.3/src/userinput/deleteblue.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

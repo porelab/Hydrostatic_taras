@@ -81,7 +81,7 @@
                   <Font name="Calibri" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="lblconnection" layoutX="1201.0" layoutY="121.0" prefHeight="36.0" prefWidth="124.0" textFill="WHITESMOKE">
+            <Label fx:id="lblconnection" layoutX="1236.0" layoutY="64.0" prefHeight="36.0" prefWidth="124.0" textFill="WHITESMOKE" AnchorPane.topAnchor="64.0">
                <font>
                   <Font name="Calibri Bold" size="15.0" />
                </font>
@@ -125,7 +125,7 @@
                   <Font name="Tahoma" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="151.0" layoutY="38.0" styleClass="font-montserrat-semiBold" text="Hydrostatic Pressure Analyser" textFill="WHITE" AnchorPane.topAnchor="38.0">
+            <Label alignment="CENTER" layoutX="488.0" layoutY="24.0" styleClass="font-montserrat-semiBold" text="Hydrostatic Pressure Analyser" textFill="WHITE" AnchorPane.topAnchor="24.0">
                <font>
                   <Font size="30.0" />
                </font>
@@ -169,7 +169,7 @@
                   <Image url="@logo1.png" />
                </image>
             </ImageView>
-            <Label fx:id="lbltime11111" layoutX="155.0" layoutY="72.0" prefHeight="36.0" prefWidth="170.0" text="EN 20811 | v4.3" textFill="WHITESMOKE">
+            <Label fx:id="lbltime11111" layoutX="622.0" layoutY="57.0" prefHeight="36.0" prefWidth="170.0" text="EN 20811 | v4.3" textFill="WHITESMOKE">
                <font>
                   <Font name="Calibri" size="15.0" />
                </font>
