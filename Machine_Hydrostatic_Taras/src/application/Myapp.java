@@ -231,48 +231,49 @@ public class Myapp {
 	
 	public static void setInternetWatch()
 	{
-		DatabaseReference connectedRef = FirebaseConnect.fb.getReference(".info/connected");
-		connectedRef.addValueEventListener(new ValueEventListener() {
-		  @Override
-		  public void onDataChange(DataSnapshot snapshot) {
-		    boolean connected = snapshot.getValue(Boolean.class);
-		    if (connected) {
-		     
-
-				javafx.application.Platform.runLater(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						//status.setText("Connected !");
-			
-						isInternetConnected.set(true);
-						System.out.println("Internet Connected");
-					}
-				});
-		      
-		    } else {
-
-				javafx.application.Platform.runLater(new Runnable() {
-					
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-			
-
-						isInternetConnected.set(false);
-
-						System.out.println("Internet Disconnected");
-					}
-				});
-		    }
-		  }
-
-		  @Override
-		  public void onCancelled(DatabaseError error) {
-		    System.err.println("Listener was cancelled");
-		  }
-		});
+//	{
+//		DatabaseReference connectedRef = FirebaseConnect.fb.getReference(".info/connected");
+//		connectedRef.addValueEventListener(new ValueEventListener() {
+//		  @Override
+//		  public void onDataChange(DataSnapshot snapshot) {
+//		    boolean connected = snapshot.getValue(Boolean.class);
+//		    if (connected) {
+//		     
+//
+//				javafx.application.Platform.runLater(new Runnable() {
+//					
+//					@Override
+//					public void run() {
+//						// TODO Auto-generated method stub
+//						//status.setText("Connected !");
+//			
+//						isInternetConnected.set(true);
+//						System.out.println("Internet Connected");
+//					}
+//				});
+//		      
+//		    } else {
+//
+//				javafx.application.Platform.runLater(new Runnable() {
+//					
+//					@Override
+//					public void run() {
+//						// TODO Auto-generated method stub
+//			
+//
+//						isInternetConnected.set(false);
+//
+//						System.out.println("Internet Disconnected");
+//					}
+//				});
+//		    }
+//		  }
+//
+//		  @Override
+//		  public void onCancelled(DatabaseError error) {
+//		    System.err.println("Listener was cancelled");
+//		  }
+//		});
 	}
 	public static void restartApp()
 	{

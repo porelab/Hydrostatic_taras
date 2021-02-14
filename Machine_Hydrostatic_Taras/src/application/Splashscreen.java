@@ -60,7 +60,7 @@ public class Splashscreen implements Initializable {
 			}
 
 		};
-		timer.schedule(task, 1000);
+		timer.schedule(task, 10);
 	}
 
 	void getFirebaseConnect()
@@ -72,26 +72,26 @@ public class Splashscreen implements Initializable {
 			public void run() {
 				// TODO Auto-generated method stub
 				try {	
-					FirebaseConnect f=new FirebaseConnect();
-					FirestoreOptions options;
-					Systemtime.StartTime();
-					
-					InputStream ii=(InputStream) this.getClass().getResourceAsStream("/application/serviceAccountKey.json");
-					InputStream ii1=(InputStream) this.getClass().getResourceAsStream("/firebase/serviceAccountKey.json");
-					
-					 
-				 
-		/*				FileInputStream serviceAccount =
-							  new FileInputStream("src/firebase/serviceAccountKey.json");*/
-					options =
-						    FirestoreOptions.getDefaultInstance().toBuilder()
-						        .setProjectId("nyiapp-3a612")
-						        .setCredentials(GoogleCredentials.fromStream(ii))
-						        .setTimestampsInSnapshotsEnabled(true)
-						        .setDatabaseId("(default)")
-						        .build();	
-					
-								FirebaseConnect.InitApp(options,ii1);
+//					FirebaseConnect f=new FirebaseConnect();
+//					FirestoreOptions options;
+//					Systemtime.StartTime();
+//					
+//					InputStream ii=(InputStream) this.getClass().getResourceAsStream("/application/serviceAccountKey.json");
+//					InputStream ii1=(InputStream) this.getClass().getResourceAsStream("/firebase/serviceAccountKey.json");
+//					
+//					 
+//				 
+//		/*				FileInputStream serviceAccount =
+//							  new FileInputStream("src/firebase/serviceAccountKey.json");*/
+//					options =
+//						    FirestoreOptions.getDefaultInstance().toBuilder()
+//						        .setProjectId("nyiapp-3a612")
+//						        .setCredentials(GoogleCredentials.fromStream(ii))
+//						        .setTimestampsInSnapshotsEnabled(true)
+//						        .setDatabaseId("(default)")
+//						        .build();	
+//					
+//								FirebaseConnect.InitApp(options,ii1);
 							
 				} catch (Exception e) {
 					// TODO: handle exception
