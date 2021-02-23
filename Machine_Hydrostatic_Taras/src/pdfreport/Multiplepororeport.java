@@ -941,9 +941,9 @@ public class Multiplepororeport {
 
 		{
 
-			
+			System.out.println("Jayesh------->"+d.data.get("result").toString());
 			Paragraph p;
-				if(d.data.get("result").toString().equals("pass"))
+				if(d.data.get("result").toString().equals("PASS"))
 				{
 					p=new Paragraph("PASS",passfont);
 				}
