@@ -941,7 +941,7 @@ public class Multiplepororeport {
 
 		{
 
-			System.out.println("Jayesh------->"+d.data.get("result").toString());
+
 			Paragraph p;
 				if(d.data.get("result").toString().equals("PASS"))
 				{
@@ -1427,7 +1427,7 @@ public class Multiplepororeport {
 				headertestname.setColor(getColorOld(14));
 
 				PdfPCell cell;
-				cell = new PdfPCell(new Phrase("EN 127", headertestname));
+				cell = new PdfPCell(new Phrase("EN 20811", headertestname));
 				cell.setBorder(1);
 				cell.setBorder(cell.BOTTOM);
 				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
